@@ -10,7 +10,7 @@ namespace solutions.tests
         {
             get
             {
-                yield return new TestCaseData(new day_2020_12_01.app.Solution(), 1, 2);
+                yield return new TestCaseData(new day_2020_12_01.app.Solution(), 1016131, 276432018);
             }
         }
 

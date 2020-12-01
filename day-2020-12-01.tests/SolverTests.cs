@@ -4,13 +4,16 @@ namespace day_2020_12_01.tests
 {
     public class SolverTests
     {
-        [TestCase(2, 1)]
-        [TestCase(3, 2)]
-        [TestCase(4, 2)]
-        [TestCase(5, 3)]
-        public void Solver_Works_Correctly(int n, int result)
+        [TestCase(new [] { 1721, 979, 366, 299, 675, 1456 }, 514579)]
+        public void Part1(int[] numbers, int result)
         {
-            Assert.That(Solver.NumberOfOddNumbers(n), Is.EqualTo(result));
+            Assert.That(Solver.Part1(numbers), Is.EqualTo(result));
+        }
+        
+        [TestCase(new [] { 1721, 979, 366, 299, 675, 1456 }, 241861950)]
+        public void Part2(int[] numbers, int result)
+        {
+            Assert.That(Solver.Part2(numbers), Is.EqualTo(result));
         }
     }
 }
