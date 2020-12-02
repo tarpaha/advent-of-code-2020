@@ -1,10 +1,13 @@
 ﻿using System;
 using utils;
+using System.Collections.Generic;
 
 namespace day_2020_12_02.app
 {
     public class Solution : ISolution
     {
+        private readonly IEnumerable<Record> _records;
+        
         public static void Main()
         {
             var solution = new Solution();
@@ -12,15 +15,19 @@ namespace day_2020_12_02.app
             Console.WriteLine($"Part2: {solution.SolvePart2()}");
         }
 
+        public Solution()
+        {
+            _records = Input.GetData();
+        }
+
         public object SolvePart1()
         {
-            var records = Input.GetData();
-            return Solver.Part1(records);
+            return Solver.Part1(_records);
         }
 
         public object SolvePart2()
         {
-            return null;
+            return Solver.Part2(_records);
         }
     }
 }

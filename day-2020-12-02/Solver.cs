@@ -9,10 +9,17 @@ namespace day_2020_12_02
         {
             return records
                 .AsParallel()
-                .Count(PasswordIsValid);
+                .Count(PasswordIsValidPart1);
         }
 
-        public static bool PasswordIsValid(Record record)
+        public static int Part2(IEnumerable<Record> records)
+        {
+            return records
+                .AsParallel()
+                .Count(PasswordIsValidPart2);
+        }
+        
+        public static bool PasswordIsValidPart1(Record record)
         {
             var count = record
                 .Password
@@ -21,6 +28,13 @@ namespace day_2020_12_02
                 ?.Count();
             
             return count.HasValue && record.Min <= count && count <= record.Max;
+        }
+        
+        public static bool PasswordIsValidPart2(Record record)
+        {
+            var p1 = record.Password[record.Min - 1] == record.Char;
+            var p2 = record.Password[record.Max - 1] == record.Char;
+            return p1 ^ p2;
         }
     }
 }
