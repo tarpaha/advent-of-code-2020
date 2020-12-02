@@ -10,6 +10,7 @@ namespace day_2020_12_02.app
         {
             return GetDataText()
                 .Split(new[] {Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries)
+                .AsParallel()
                 .Select(Parser.Parse)
                 .ToList();
         }
