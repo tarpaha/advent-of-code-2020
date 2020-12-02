@@ -19,13 +19,15 @@ namespace day_2020_12_02
         
         public static bool PasswordIsValidPart1(Record record)
         {
-            var count = record
-                .Password
-                .GroupBy(ch => ch)
-                .FirstOrDefault(group => group.Key == record.Char)
-                ?.Count();
-            
-            return count.HasValue && record.Min <= count && count <= record.Max;
+            var count = 0;
+            foreach (var ch in record.Password)
+            {
+                if (ch == record.Char)
+                    count += 1;
+                if (count > record.Max)
+                    return false;
+            }
+            return count >= record.Min;
         }
         
         public static bool PasswordIsValidPart2(Record record)
