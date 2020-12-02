@@ -6,7 +6,7 @@ namespace day_2020_12_02.tests
 {
     public class ParserTests
     {
-        private static IEnumerable<TestCaseData> SolutionsTestCases
+        private static IEnumerable<TestCaseData> ParserTestCases
         {
             get
             {
@@ -16,7 +16,7 @@ namespace day_2020_12_02.tests
             }
         }
         
-        [TestCaseSource(nameof(SolutionsTestCases))]
+        [TestCaseSource(nameof(ParserTestCases))]
         public void Parse_Works_Correctly(string s, Record result)
         {
             Parser.Parse(s).Should().BeEquivalentTo(result);
