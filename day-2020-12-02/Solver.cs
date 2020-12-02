@@ -8,14 +8,12 @@ namespace day_2020_12_02
         public static int Part1(IEnumerable<Record> records)
         {
             return records
-                .AsParallel()
                 .Count(PasswordIsValidPart1);
         }
 
         public static int Part2(IEnumerable<Record> records)
         {
             return records
-                .AsParallel()
                 .Count(PasswordIsValidPart2);
         }
         
