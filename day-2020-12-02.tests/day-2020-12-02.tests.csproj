@@ -4,6 +4,8 @@
         <TargetFramework>net5.0</TargetFramework>
 
         <IsPackable>false</IsPackable>
+
+        <RootNamespace>day_2020_12_02.tests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

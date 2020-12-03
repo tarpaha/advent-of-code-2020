@@ -16,7 +16,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day-2020-12-02", "day-2020-
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day-2020-12-02.app", "day-2020-12-02.app\day-2020-12-02.app.csproj", "{B4B661C5-C917-4155-9C1F-FE1ABE67321A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day_2020_12_02.tests", "day_2020_12_02.tests\day_2020_12_02.tests.csproj", "{278869EA-E281-4691-AC6E-7141327F03AE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day-2020-12-02.tests", "day-2020-12-02.tests\day-2020-12-02.tests.csproj", "{278869EA-E281-4691-AC6E-7141327F03AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
