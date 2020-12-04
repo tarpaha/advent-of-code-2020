@@ -26,11 +26,11 @@ iyr:2011 ecl:brn hgt:59in";
             Assert.That(passports.Count(), Is.EqualTo(4));
         }
         
-        [TestCase("ecl:gry pid:860033327 eyr:2020 hcl:#fffffd byr:1937 iyr:2017 cid:147 hgt:183cm", true)]
-        [TestCase("iyr:2013 ecl:amb cid:350 eyr:2023 pid:028048884 hcl:#cfa07d byr:1929", false)]
-        public void ParsePassport_Works_Correctly(string data, bool result)
+        [TestCase("ecl:gry pid:860033327 eyr:2020 hcl:#fffffd byr:1937 iyr:2017 cid:147 hgt:183cm", 8)]
+        [TestCase("iyr:2013 ecl:amb cid:350 eyr:2023 pid:028048884 hcl:#cfa07d byr:1929", 7)]
+        public void ParsePassport_Works_Correctly(string data, int result)
         {
-            Assert.That(Parser.ParsePassport(data).IsValid, Is.EqualTo(result));
+            Assert.That(Parser.ParsePassport(data).ParametersCount, Is.EqualTo(result));
         }
     }
 }

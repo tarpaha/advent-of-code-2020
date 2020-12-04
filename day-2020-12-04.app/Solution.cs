@@ -7,7 +7,7 @@ namespace day_2020_12_04.app
 {
     public class Solution : ISolution
     {
-        private readonly IEnumerable<IPassword> _passports;
+        private readonly IEnumerable<Passport> _passports;
 
         public static void Main()
         {
@@ -23,12 +23,12 @@ namespace day_2020_12_04.app
 
         public object SolvePart1()
         {
-            return _passports.Count(p => p.IsValid);
+            return Solver.Part1(_passports);
         }
 
         public object SolvePart2()
         {
-            return default;
+            return Solver.Part2(_passports);
         }
     }
 }
