@@ -16,5 +16,16 @@ namespace day_2020_12_05
         {
             return data.Select(GetSeatId).Max();
         }
+
+        public static int Part2(IEnumerable<string> data)
+        {
+            var seatIds = data.Select(GetSeatId).OrderBy(n => n).ToList();
+            for (var i = 1; i < seatIds.Count; i++)
+            {
+                if (seatIds[i] - seatIds[i - 1] == 2)
+                    return seatIds[i] - 1;
+            }
+            throw new Exception();
+        }
     }
 }
