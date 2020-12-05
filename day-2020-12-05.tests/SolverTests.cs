@@ -4,10 +4,12 @@ namespace day_2020_12_05.tests
 {
     public class SolverTests
     {
-        [Test]
-        public void Test1()
+        [TestCase("BFFFBBFRRR", 567)]
+        [TestCase("FFFBBBFRRR", 119)]
+        [TestCase("BBFFBBFRLL", 820)]
+        public void GetSeatId_Works_Correctly(string str, int result)
         {
-            Assert.Pass();
+            Assert.That(Solver.GetSeatId(str), Is.EqualTo(result));
         }
     }
 }

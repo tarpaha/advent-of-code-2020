@@ -13,4 +13,8 @@
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\day-2020-12-05\day-2020-12-05.csproj" />
+    </ItemGroup>
+
 </Project>
