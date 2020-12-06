@@ -6,6 +6,8 @@ namespace day_2020_12_06.app
 {
     public class Solution : ISolution
     {
+        private IEnumerable<IEnumerable<string>> _groups;
+
         public static void Main()
         {
             var solution = new Solution();
@@ -13,9 +15,14 @@ namespace day_2020_12_06.app
             Console.WriteLine($"Part2: {solution.SolvePart2()}");
         }
 
+        public Solution()
+        {
+            _groups = Parser.ParseGroups(Input.GetData(), Environment.NewLine);
+        }
+
         public object SolvePart1()
         {
-            return default;
+            return Solver.Part1(_groups);
         }
 
         public object SolvePart2()

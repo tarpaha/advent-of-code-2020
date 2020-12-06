@@ -4,10 +4,11 @@ namespace day_2020_12_06.tests
 {
     public class SolverTests
     {
-        [Test]
-        public void Part1()
+        [TestCase("abc||a|b|c||ab|ac||a|a|a|a||b", "|", 11)]
+        public void Part1(string data, string newLine, int result)
         {
-            Assert.Pass();
+            var groups = Parser.ParseGroups(data, newLine);
+            Assert.That(Solver.Part1(groups), Is.EqualTo(result));
         }
     }
 }
