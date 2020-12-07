@@ -22,5 +22,35 @@ namespace day_2020_12_07
             
             return (name, bags);
         }
+
+        public static IEnumerable<Bag> Parse(string data)
+        {
+            var lines = data.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+            var dict = new Dictionary<string, Bag>();
+
+            foreach (var line in lines)
+            {
+                var (name, innerBags) = ParseLine(line);
+                var bag = GetBagOrCreateNew(dict, name);
+                foreach (var (innerName, innerCount) in innerBags)
+                {
+                    var nestedBag = GetBagOrCreateNew(dict, innerName);
+                    bag.AddInnerBag(nestedBag, innerCount);
+                }
+            }
+
+            return dict.Values;
+        }
+
+        private static Bag GetBagOrCreateNew(Dictionary<string, Bag> bags, string name)
+        {
+            bags.TryGetValue(name, out var bag);
+            if (bag == null)
+            {
+                bag = new Bag(name);
+                bags.Add(name, bag);
+            }
+            return bag;
+        }
     }
 }
