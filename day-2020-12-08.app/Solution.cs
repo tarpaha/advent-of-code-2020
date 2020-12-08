@@ -1,11 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using utils;
 
 namespace day_2020_12_08.app
 {
     public class Solution : ISolution
     {
+        private readonly GameConsole _gameConsole;
+        
         public static void Main()
         {
             var solution = new Solution();
@@ -13,9 +14,15 @@ namespace day_2020_12_08.app
             Console.WriteLine($"Part2: {solution.SolvePart2()}");
         }
 
+        public Solution()
+        {
+            _gameConsole = new GameConsole();
+            _gameConsole.LoadProgram(Parser.Parse(Input.GetData()));
+        }
+
         public object SolvePart1()
         {
-            return null;
+            return Solver.Part1(_gameConsole);
         }
 
         public object SolvePart2()

@@ -2,5 +2,10 @@
 {
     public static class Solver
     {
+        public static int Part1(GameConsole gameConsole)
+        {
+            gameConsole.Start();
+            return gameConsole.Accumulator;
+        }
     }
 }

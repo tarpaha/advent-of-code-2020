@@ -29,6 +29,8 @@ namespace day_2020_12_08
                     break;
                 }
 
+                _visitedPointers.Add(_instructionPointer);
+
                 var instruction = _program[_instructionPointer];
                 switch (instruction.Operation)
                 {
