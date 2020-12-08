@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Linq;
+using System.Collections.Generic;
 using utils;
 
 namespace day_2020_12_08.app
 {
     public class Solution : ISolution
     {
-        private readonly GameConsole _gameConsole;
+        private readonly IEnumerable<Instruction> _instructions;
         
         public static void Main()
         {
@@ -16,18 +18,17 @@ namespace day_2020_12_08.app
 
         public Solution()
         {
-            _gameConsole = new GameConsole();
-            _gameConsole.LoadProgram(Parser.Parse(Input.GetData()));
+            _instructions = Parser.Parse(Input.GetData()).ToList();
         }
 
         public object SolvePart1()
         {
-            return Solver.Part1(_gameConsole);
+            return Solver.Part1(_instructions);
         }
 
         public object SolvePart2()
         {
-            return null;
+            return Solver.Part2(_instructions);
         }
     }
 }

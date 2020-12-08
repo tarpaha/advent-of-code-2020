@@ -7,7 +7,9 @@ namespace day_2020_12_08
     public class GameConsole
     {
         public int Accumulator => _accumulator;
-        
+        public IEnumerable<int> VisitedPointers => _visitedPointers;
+        public bool InfiniteLoop => _infiniteLoopFlag;
+
         public void LoadProgram(IEnumerable<Instruction> instructions)
         {
             _program = instructions.ToArray();

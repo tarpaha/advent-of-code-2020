@@ -1,6 +1,6 @@
 ﻿namespace day_2020_12_08
 {
-    public class Instruction
+    public readonly struct Instruction
     {
         public Operation Operation { get; }
         public int Argument { get; }
