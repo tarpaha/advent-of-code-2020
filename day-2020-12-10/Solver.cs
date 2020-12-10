@@ -11,14 +11,15 @@ namespace day_2020_12_10
             var ones = 0;
             var threes = 0;
             var prev = 0;
-            for (var i = 0; i < jolts.Length; i++)
+            foreach (var jolt in jolts)
             {
-                var diff = jolts[i] - prev;
-                if (diff == 1)
-                    ones += 1;
-                else if (diff == 3)
-                    threes += 1;
-                prev = jolts[i];
+                var diff = jolt - prev;
+                switch (diff)
+                {
+                    case 1: ones += 1; break;
+                    case 3: threes += 1; break;
+                }
+                prev = jolt;
             }
             threes += 1;
             return ones * threes;
