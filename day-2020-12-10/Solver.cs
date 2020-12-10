@@ -24,5 +24,23 @@ namespace day_2020_12_10
             threes += 1;
             return ones * threes;
         }
+
+        public static long Part2(IEnumerable<int> numbers)
+        {
+            var jolts = numbers.OrderBy(n => n).Prepend(0).ToArray();
+            var ins = new long[jolts.Length];
+
+            ins[0] = 1;
+
+            for (var p = 0; p < jolts.Length; p++)
+            {
+                for (var i = p + 1; i < jolts.Length && i <= p + 3 && jolts[i] - jolts[p] <= 3; i++)
+                {
+                    ins[i] += ins[p];
+                }
+            }
+
+            return ins[^1];
+        }
     }
 }
