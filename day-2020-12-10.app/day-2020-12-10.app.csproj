@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net5.0</TargetFramework>
+        <RootNamespace>day_2020_12_10.app</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\day-2020-12-10\day-2020-12-10.csproj" />
+      <ProjectReference Include="..\utils\utils.csproj" />
+    </ItemGroup>
+
+</Project>
