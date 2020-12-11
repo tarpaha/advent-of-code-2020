@@ -2,12 +2,13 @@
 {
     public static class Model
     {
-        public static Cell[,] Step(Cell[,] input)
+        public static (Cell[,], bool) Step(Cell[,] input)
         {
             var width = input.GetLength(0);
             var height = input.GetLength(1);
             
             var output = new Cell[width, height];
+            var changed = false;
 
             for (var y = 0; y < height; y++)
             {
@@ -16,20 +17,28 @@
                     switch (input[x, y])
                     {
                         case Cell.EmptySeat:
-                            output[x, y] = GetAdjacentOccupiedSeatsCount(input, x, y) == 0
-                                ? Cell.OccupiedSeat
-                                : Cell.EmptySeat;
+                            if (GetAdjacentOccupiedSeatsCount(input, x, y) == 0)
+                            {
+                                output[x, y] = Cell.OccupiedSeat;
+                                changed = true;
+                            }
+                            else
+                                output[x, y] = Cell.EmptySeat;
                             break;
                         case Cell.OccupiedSeat:
-                            output[x, y] = GetAdjacentOccupiedSeatsCount(input, x, y) >= 4
-                                ? Cell.EmptySeat
-                                : Cell.OccupiedSeat;
+                            if (GetAdjacentOccupiedSeatsCount(input, x, y) >= 4)
+                            {
+                                output[x, y] = Cell.EmptySeat;
+                                changed = true;
+                            }
+                            else
+                                output[x, y] = Cell.OccupiedSeat;
                             break;
                     }
                 }
             }
 
-            return output;
+            return (output, changed);
         }
 
         public static int GetAdjacentOccupiedSeatsCount(Cell[,] cells, int x, int y)

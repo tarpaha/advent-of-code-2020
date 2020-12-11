@@ -118,7 +118,11 @@ L.#.L..#..
         {
             var cellsBefore = Parser.Parse(dataBefore);
             var cellsAfter = Parser.Parse(dataAfter);
-            Assert.That(Model.Step(cellsBefore), Is.EquivalentTo(cellsAfter));
+            
+            var (cells, changed) = Model.Step(cellsBefore);
+            
+            Assert.That(changed, Is.True);
+            Assert.That(cells, Is.EquivalentTo(cellsAfter));
         }
 
         [Test]
