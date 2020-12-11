@@ -1,6 +1,6 @@
 ﻿namespace day_2020_12_11
 {
-    public static class Model
+    public static class Model1
     {
         public static (Cell[,], bool) Step(Cell[,] input)
         {

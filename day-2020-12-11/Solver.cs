@@ -8,7 +8,7 @@ namespace day_2020_12_11
         {
             var changed = true;
             while (changed)
-                (cells, changed) = Model.Step(cells);
+                (cells, changed) = Model1.Step(cells);
             return cells.Cast<Cell>().Count(cell => cell == Cell.OccupiedSeat);
         }
     }
