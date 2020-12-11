@@ -26,6 +26,7 @@ L.LLLLL.LL",
 ##########
 #.######.#
 #.#####.##")]
+        
         [TestCase(@"
 #.##.##.##
 #######.##
@@ -48,6 +49,7 @@ L.L.L..L..
 #LLLLLLLL#
 #.LLLLLL.L
 #.#LLLL.##")]
+        
         [TestCase(@"
 #.LL.L#.##
 #LLLLLL.L#
@@ -70,6 +72,7 @@ L.#.#..#..
 #L######L#
 #.LL###L.L
 #.#L###.##")]
+        
         [TestCase(@"
 #.##.L#.##
 #L###LL.L#
@@ -92,6 +95,7 @@ L.L.L..#..
 #L#LLLL#L#
 #.LLLLLL.L
 #.#L#L#.##")]
+        
         [TestCase(@"
 #.#L.L#.##
 #LLL#LL.L#
