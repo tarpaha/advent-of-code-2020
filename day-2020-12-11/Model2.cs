@@ -4,23 +4,57 @@
     {
         public static (Cell[,], bool) Step(Cell[,] input)
         {
-            return (input, false);
+            var width = input.GetLength(0);
+            var height = input.GetLength(1);
+            
+            var output = new Cell[width, height];
+            var changed = false;
+
+            for (var y = 0; y < height; y++)
+            {
+                for (var x = 0; x < width; x++)
+                {
+                    switch (input[x, y])
+                    {
+                        case Cell.EmptySeat:
+                            if (GetVisibleOccupiedSeatsCount(input, x, y) == 0)
+                            {
+                                output[x, y] = Cell.OccupiedSeat;
+                                changed = true;
+                            }
+                            else
+                                output[x, y] = Cell.EmptySeat;
+                            break;
+                        case Cell.OccupiedSeat:
+                            if (GetVisibleOccupiedSeatsCount(input, x, y) >= 5)
+                            {
+                                output[x, y] = Cell.EmptySeat;
+                                changed = true;
+                            }
+                            else
+                                output[x, y] = Cell.OccupiedSeat;
+                            break;
+                    }
+                }
+            }
+
+            return (output, changed);
         }
 
-        public static int GetVisibleSeatsCount(Cell[,] cells, int x, int y)
+        public static int GetVisibleOccupiedSeatsCount(Cell[,] cells, int x, int y)
         {
             return
-                IsSeatVisible(cells, x, y,  1,  0) +
-                IsSeatVisible(cells, x, y,  1,  1) +
-                IsSeatVisible(cells, x, y,  0,  1) +
-                IsSeatVisible(cells, x, y, -1,  1) +
-                IsSeatVisible(cells, x, y, -1,  0) +
-                IsSeatVisible(cells, x, y, -1, -1) +
-                IsSeatVisible(cells, x, y,  0, -1) +
-                IsSeatVisible(cells, x, y,  1, -1);
+                IsOccupiedSeatVisible(cells, x, y,  1,  0) +
+                IsOccupiedSeatVisible(cells, x, y,  1,  1) +
+                IsOccupiedSeatVisible(cells, x, y,  0,  1) +
+                IsOccupiedSeatVisible(cells, x, y, -1,  1) +
+                IsOccupiedSeatVisible(cells, x, y, -1,  0) +
+                IsOccupiedSeatVisible(cells, x, y, -1, -1) +
+                IsOccupiedSeatVisible(cells, x, y,  0, -1) +
+                IsOccupiedSeatVisible(cells, x, y,  1, -1);
         }
 
-        public static int IsSeatVisible(Cell[,] cells, int x, int y, int dx, int dy)
+        public static int IsOccupiedSeatVisible(Cell[,] cells, int x, int y, int dx, int dy)
         {
             var width = cells.GetLength(0);
             var height = cells.GetLength(1);
@@ -35,8 +69,13 @@
                 if (y < 0 || y >= height)
                     return 0;
 
-                if (cells[x, y] != Cell.Floor)
-                    return 1;
+                switch (cells[x, y])
+                {
+                    case Cell.EmptySeat:
+                        return 0;
+                    case Cell.OccupiedSeat:
+                        return 1;
+                }
             }
         }
     }
