@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace day_2020_12_12
 {
-    public class Ship
+    public class Ship1
     {
         private int _x;
         private int _y;
