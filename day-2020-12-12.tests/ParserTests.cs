@@ -9,11 +9,11 @@ namespace day_2020_12_12.tests
         [TestCase("F7", Action.F, 7)]
         [TestCase("R90", Action.R, 90)]
         [TestCase("F11", Action.F, 11)]
-        public void ParseAction_Works_Correctly(string str, Action actionResult, int valueResult)
+        public void ParseInstruction_Works_Correctly(string str, Action instructionAction, int instructionValue)
         {
-            var (action, value) = Parser.ParseAction(str);
-            Assert.That(action, Is.EqualTo(actionResult));
-            Assert.That(value, Is.EqualTo(valueResult));
+            var instruction = Parser.ParseInstruction(str);
+            Assert.That(instruction.Action, Is.EqualTo(instructionAction));
+            Assert.That(instruction.Value, Is.EqualTo(instructionValue));
         }
     }
 }

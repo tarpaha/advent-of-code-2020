@@ -4,10 +4,11 @@ namespace day_2020_12_12
 {
     public static class Parser
     {
-        public static (Action, int) ParseAction(string str)
+        public static Instruction ParseInstruction(string str)
         {
-            return (
-                str[0] switch
+            return new Instruction
+            {
+                Action = str[0] switch
                 {
                     'N' => Action.N,
                     'S' => Action.S,
@@ -18,7 +19,8 @@ namespace day_2020_12_12
                     'F' => Action.F,
                     _ => throw new Exception()
                 },
-                int.Parse(str[1..]));
+                Value = int.Parse(str[1..])
+            };
         }
     }
 }
