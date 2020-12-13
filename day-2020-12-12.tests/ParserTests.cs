@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Linq;
+using NUnit.Framework;
 
 namespace day_2020_12_12.tests
 {
@@ -14,6 +15,12 @@ namespace day_2020_12_12.tests
             var instruction = Parser.ParseInstruction(str);
             Assert.That(instruction.Action, Is.EqualTo(instructionAction));
             Assert.That(instruction.Value, Is.EqualTo(instructionValue));
+        }
+
+        [TestCase("F10,N3", ",", 2)]
+        public void ParseInstructions_Works_Correctly(string str, string separator, int count)
+        {
+            Assert.That(Parser.ParseInstructions(str, separator).Count(), Is.EqualTo(count));
         }
     }
 }
