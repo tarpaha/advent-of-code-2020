@@ -9,7 +9,7 @@ namespace day_2020_12_14.tests
         [TestCase(0, "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX1XXXX0X", 64)]
         public void ApplyMask_Works_Correctly(long number, string mask, long result)
         {
-            Assert.That(Computer.ApplyMask(number, mask), Is.EqualTo(result));
+            Assert.That(Computer1.ApplyMask(number, mask), Is.EqualTo(result));
         }
     }
 }

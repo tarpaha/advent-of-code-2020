@@ -6,7 +6,7 @@ namespace day_2020_12_14
     {
         public static long Part1(IEnumerable<Command> commands)
         {
-            var computer = new Computer();
+            var computer = new Computer1();
             computer.ProcessCommands(commands);
             return computer.GetSumOfValuesInMemory();
         }

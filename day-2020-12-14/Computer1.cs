@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace day_2020_12_14
 {
-    public class Computer
+    public class Computer1
     {
         private string _mask;
         private readonly Dictionary<long, long> _memory = new Dictionary<long, long>();
