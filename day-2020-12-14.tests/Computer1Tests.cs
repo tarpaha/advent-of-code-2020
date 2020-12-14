@@ -2,7 +2,7 @@
 
 namespace day_2020_12_14.tests
 {
-    public class ComputerTests
+    public class Computer1Tests
     {
         [TestCase(11, "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX1XXXX0X", 73)]
         [TestCase(101, "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX1XXXX0X", 101)]
