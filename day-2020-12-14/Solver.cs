@@ -1,23 +1,14 @@
-﻿namespace day_2020_12_14
+﻿using System.Collections.Generic;
+
+namespace day_2020_12_14
 {
     public static class Solver
     {
-        public static long ApplyMask(long number, string mask)
+        public static long Part1(IEnumerable<Command> commands)
         {
-            long bit = 1;
-            for (var i = mask.Length - 1; i >= 0; i--, bit <<= 1)
-            {
-                switch (mask[i])
-                {
-                    case '0':
-                        number &= ~bit;
-                        break;
-                    case '1':
-                        number |= bit;
-                        break;
-                }
-            }
-            return number;
+            var computer = new Computer();
+            computer.ProcessCommands(commands);
+            return computer.GetSumOfValuesInMemory();
         }
     }
 }

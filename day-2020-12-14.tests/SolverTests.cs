@@ -1,15 +1,19 @@
+using System;
+using System.Linq;
 using NUnit.Framework;
 
 namespace day_2020_12_14.tests
 {
     public class SolverTests
     {
-        [TestCase(11, "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX1XXXX0X", 73)]
-        [TestCase(101, "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX1XXXX0X", 101)]
-        [TestCase(0, "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX1XXXX0X", 64)]
-        public void ApplyMask_Works_Correctly(long number, string mask, long result)
+        [TestCase(@"
+mask = XXXXXXXXXXXXXXXXXXXXXXXXXXXXX1XXXX0X
+mem[8] = 11
+mem[7] = 101
+mem[8] = 0", 165)]
+        public void Part1(string data, long result)
         {
-            Assert.That(Solver.ApplyMask(number, mask), Is.EqualTo(result));
+            Assert.That(Solver.Part1(Parser.ParseCommands(data)), Is.EqualTo(result));
         }
     }
 }

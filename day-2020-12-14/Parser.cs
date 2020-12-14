@@ -1,9 +1,16 @@
 ﻿using System;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace day_2020_12_14
 {
     public static class Parser
     {
+        public static IEnumerable<Command> ParseCommands(string data)
+        {
+            return data.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries).Select(ParseCommand);
+        }
+        
         public static Command ParseCommand(string str)
         {
             var words = str.Split(new[] {' ', '=', '[', ']'}, StringSplitOptions.RemoveEmptyEntries);
