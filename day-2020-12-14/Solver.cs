@@ -10,5 +10,12 @@ namespace day_2020_12_14
             computer.ProcessCommands(commands);
             return computer.GetSumOfValuesInMemory();
         }
+
+        public static long Part2(IEnumerable<Command> commands)
+        {
+            var computer = new Computer2();
+            computer.ProcessCommands(commands);
+            return computer.GetSumOfValuesInMemory();
+        }
     }
 }

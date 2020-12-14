@@ -13,5 +13,15 @@ mem[8] = 0", 165)]
         {
             Assert.That(Solver.Part1(Parser.ParseCommands(data)), Is.EqualTo(result));
         }
+        
+        [TestCase(@"
+mask = 000000000000000000000000000000X1001X
+mem[42] = 100
+mask = 00000000000000000000000000000000X0XX
+mem[26] = 1", 208)]
+        public void Part2(string data, long result)
+        {
+            Assert.That(Solver.Part2(Parser.ParseCommands(data)), Is.EqualTo(result));
+        }
     }
 }
