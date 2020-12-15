@@ -11,28 +11,23 @@ namespace day_2020_12_15
             var dict = Enumerable
                 .Range(0, numbers.Count - 1)
                 .ToDictionary(n => numbers[n], n => n);
-
+            var last = numbers.Last();
+            
             for (var turn = numbers.Count; turn < totalTurns; turn++)
             {
-                var last = numbers.Last();
-
-                if (!dict.TryGetValue(last, out var lastId))
-                    lastId = -1;
-
-                if (lastId < 0 || lastId == turn - 1)
+                if (!dict.TryGetValue(last, out var lastId) || lastId == turn - 1)
                 {
-                    dict[last] = numbers.Count - 1;
-                    numbers.Add(0);
+                    dict[last] = turn - 1;
+                    last = 0;
                 }
                 else
                 {
-                    dict[last] = numbers.Count - 1;
-                    var diff = numbers.Count - 1 - lastId;
-                    numbers.Add(diff);
+                    dict[last] = turn - 1;
+                    last = turn - 1 - lastId;
                 }
             }
 
-            return numbers.Last();
+            return last;
         }
     }
 }
