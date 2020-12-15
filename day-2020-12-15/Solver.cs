@@ -5,7 +5,7 @@ namespace day_2020_12_15
 {
     public static class Solver
     {
-        public static int Part1(IEnumerable<int> startingNumbers, int totalTurns)
+        public static int Solve(IEnumerable<int> startingNumbers, int totalTurns)
         {
             var numbers = startingNumbers.ToList();
             var dict = Enumerable

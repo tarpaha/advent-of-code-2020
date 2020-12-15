@@ -22,12 +22,12 @@ namespace day_2020_12_15.app
 
         public object SolvePart1()
         {
-            return Solver.Part1(_startingNumbers, 2020);
+            return Solver.Solve(_startingNumbers, 2020);
         }
 
         public object SolvePart2()
         {
-            return null;
+            return Solver.Solve(_startingNumbers, 30000000);
         }
     }
 }

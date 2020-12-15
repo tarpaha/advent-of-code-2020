@@ -18,9 +18,9 @@ namespace day_2020_12_15.tests
         [TestCase(new[] {2, 3, 1}, 2020, 78)]
         [TestCase(new[] {3, 2, 1}, 2020, 438)]
         [TestCase(new[] {3, 1, 2}, 2020, 1836)]
-        public void Part1(IEnumerable<int> startingNumbers, int turns, int result)
+        public void Solve(IEnumerable<int> startingNumbers, int turns, int result)
         {
-            Assert.That(Solver.Part1(startingNumbers, turns), Is.EqualTo(result));
+            Assert.That(Solver.Solve(startingNumbers, turns), Is.EqualTo(result));
         }
     }
 }
