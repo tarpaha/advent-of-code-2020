@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using utils;
 
 namespace day_2020_12_18.app
 {
     public class Solution : ISolution
     {
+        private readonly IEnumerable<string> _expressions;
+
         public static void Main()
         {
             var solution = new Solution();
@@ -12,9 +15,14 @@ namespace day_2020_12_18.app
             Console.WriteLine($"Part2: {solution.SolvePart2()}");
         }
 
+        public Solution()
+        {
+            _expressions = Input.GetData();
+        }
+
         public object SolvePart1()
         {
-            return null;
+            return Solver.Part1(_expressions);
         }
 
         public object SolvePart2()
