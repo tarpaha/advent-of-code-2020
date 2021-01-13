@@ -7,7 +7,7 @@ namespace day_2020_12_13
     {
         public static int Part1(int time, IEnumerable<int> ids)
         {
-            var (id, reminder) = ids.Select(id => (id, id - (time % id))).OrderBy(p => p.Item2).First();
+            var (id, reminder) = ids.Where(id => id > 0).Select(id => (id, id - (time % id))).OrderBy(p => p.Item2).First();
             return id * reminder;
         }
     }

@@ -11,7 +11,7 @@ namespace day_2020_12_13
             var lines = data.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
             return (
                 int.Parse(lines[0]),
-                lines[1].Split(",").Where(id => id != "x").Select(int.Parse).ToList());
+                lines[1].Split(",").Select(id => id == "x" ? 0 : int.Parse(id)).ToList());
         }
     }
 }
