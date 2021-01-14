@@ -6,12 +6,12 @@ namespace day_2020_12_13
 {
     public static class Parser
     {
-        public static (int, IEnumerable<int>) Parse(string data)
+        public static (long, IEnumerable<long>) Parse(string data)
         {
             var lines = data.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
             return (
-                int.Parse(lines[0]),
-                lines[1].Split(",").Select(id => id == "x" ? 0 : int.Parse(id)).ToList());
+                long.Parse(lines[0]),
+                lines[1].Split(",").Select(id => id == "x" ? 0L : long.Parse(id)).ToList());
         }
     }
 }

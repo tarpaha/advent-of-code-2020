@@ -6,8 +6,8 @@ namespace day_2020_12_13.app
 {
     public class Solution : ISolution
     {
-        private readonly int _time;
-        private readonly IEnumerable<int> _ids;
+        private readonly long _time;
+        private readonly IEnumerable<long> _ids;
         
         public static void Main()
         {
@@ -28,7 +28,7 @@ namespace day_2020_12_13.app
 
         public object SolvePart2()
         {
-            return null;
+            return Solver.Part2(_ids);
         }
     }
 }
