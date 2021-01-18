@@ -6,6 +6,13 @@ namespace day_2020_12_17
     {
         public int ActiveCubesCount => _activeCubes.Count;
         
+        public Grid4D() {}
+        public Grid4D(IEnumerable<(int x, int y)> activeCubes)
+        {
+            foreach (var (x, y) in activeCubes)
+                SetCubeActive(x, y, 0, 0);
+        }
+        
         public void SetCubeActive(int x, int y, int z, int w)
         {
             _activeCubes.Add((x, y, z, w));
