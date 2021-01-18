@@ -5,7 +5,7 @@ namespace day_2020_12_17.app
 {
     public class Solution : ISolution
     {
-        private readonly Grid _grid;
+        private readonly Grid3D _grid;
 
         public static void Main()
         {
@@ -16,7 +16,7 @@ namespace day_2020_12_17.app
 
         public Solution()
         {
-            _grid = Parser.Parse(Input.GetData(), Environment.NewLine);
+            _grid = Parser.Parse3D(Input.GetData(), Environment.NewLine);
         }
 
         public object SolvePart1()

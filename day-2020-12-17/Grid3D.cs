@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace day_2020_12_17
 {
-    public class Grid
+    public class Grid3D
     {
         public int ActiveCubesCount => _activeCubes.Count;
         

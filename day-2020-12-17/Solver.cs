@@ -2,16 +2,16 @@
 {
     public static class Solver
     {
-        public static int Part1(Grid grid, int cyclesCount)
+        public static int Part1(Grid3D grid, int cyclesCount)
         {
             for (var i = 0; i < cyclesCount; i++)
-                grid = Simulate(grid);
+                grid = Simulate3D(grid);
             return grid.ActiveCubesCount;
         }
         
-        public static Grid Simulate(Grid inGrid)
+        public static Grid3D Simulate3D(Grid3D inGrid)
         {
-            var outGrid = new Grid();
+            var outGrid = new Grid3D();
             var ((xMin, xMax), (yMin, yMax), (zMin, zMax)) = inGrid.GetDimensions();
             for (var x = xMin - 1; x <= xMax + 1; x++)
             {
@@ -36,7 +36,7 @@
             return outGrid;
         }
 
-        public static int GetNeighborsCount(Grid grid, int px, int py, int pz)
+        public static int GetNeighborsCount(Grid3D grid, int px, int py, int pz)
         {
             var count = 0;
             for (var x = px - 1; x <= px + 1; x++)

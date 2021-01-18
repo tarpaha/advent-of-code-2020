@@ -4,10 +4,10 @@ namespace day_2020_12_17
 {
     public static class Parser
     {
-        public static Grid Parse(string str, string separator)
+        public static Grid3D Parse3D(string str, string separator)
         {
             var lines = str.Split(separator, StringSplitOptions.RemoveEmptyEntries);
-            var grid = new Grid();
+            var grid = new Grid3D();
             for (var y = 0; y < lines.Length; y++)
             {
                 var line = lines[y];
