@@ -26,7 +26,7 @@ namespace day_2020_12_16.app
 
         public object SolvePart2()
         {
-            return null;
+            return Solver.Part2(_problem);
         }
     }
 }
