@@ -5,7 +5,14 @@ namespace day_2020_12_17
     public class Grid3D
     {
         public int ActiveCubesCount => _activeCubes.Count;
-        
+
+        public Grid3D() {}
+        public Grid3D(IEnumerable<(int x, int y)> activeCubes)
+        {
+            foreach (var (x, y) in activeCubes)
+                SetCubeActive(x, y, 0);
+        }
+
         public void SetCubeActive(int x, int y, int z)
         {
             _activeCubes.Add((x, y, z));

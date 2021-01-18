@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using utils;
 
 namespace day_2020_12_17.app
 {
     public class Solution : ISolution
     {
-        private readonly Grid3D _grid;
+        private readonly IEnumerable<(int x, int y)> _activeCubes;
 
         public static void Main()
         {
@@ -16,12 +17,12 @@ namespace day_2020_12_17.app
 
         public Solution()
         {
-            _grid = Parser.Parse3D(Input.GetData(), Environment.NewLine);
+            _activeCubes = Parser.GetActiveCubesPositions(Input.GetData(), Environment.NewLine);
         }
 
         public object SolvePart1()
         {
-            return Solver.Part1(_grid, 6);
+            return Solver.Part1(new Grid3D(_activeCubes), 6);
         }
 
         public object SolvePart2()

@@ -8,13 +8,13 @@ namespace day_2020_12_17.tests
         [TestCase(".#.|..#|###", "|", 6, 112)]
         public void Part1(string data, string separator, int cyclesCount, int result)
         {
-            Assert.That(Solver.Part1(Parser.Parse3D(data, separator), cyclesCount), Is.EqualTo(result));
+            Assert.That(Solver.Part1(new Grid3D(Parser.GetActiveCubesPositions(data, separator)), cyclesCount), Is.EqualTo(result));
         }
         
         [Test]
         public void Simulate3D_Works_Correctly()
         {
-            var grid = Solver.Simulate3D(Parser.Parse3D(".#.|..#|###", "|"));
+            var grid = Solver.Simulate3D(new Grid3D(Parser.GetActiveCubesPositions(".#.|..#|###", "|")));
             var ((xMin, xMax), (yMin, yMax), _) = grid.GetDimensions();
             Assert.That(GetSliceStr(grid, (xMin, yMin), (xMax, yMax), -1), Is.EqualTo("#..|..#|.#."));
             Assert.That(GetSliceStr(grid, (xMin, yMin), (xMax, yMax),  0), Is.EqualTo("#.#|.##|.#."));
@@ -30,7 +30,7 @@ namespace day_2020_12_17.tests
         [TestCase(".#.|..#|###", "|", 2, 2, +1, 3)]
         public void GetNeighborsCount3D_Works_Correctly(string data, string separator, int x, int y, int z, int result)
         {
-            Assert.That(Solver.GetNeighborsCount(Parser.Parse3D(data, separator), x, y, z), Is.EqualTo(result));
+            Assert.That(Solver.GetNeighborsCount(new Grid3D(Parser.GetActiveCubesPositions(data, separator)), x, y, z), Is.EqualTo(result));
         }
         
         private static string GetSliceStr(Grid3D grid, (int x, int y) min, (int x, int y) max, int z)
