@@ -30,7 +30,7 @@ namespace day_2020_12_17.tests
         [TestCase(".#.|..#|###", "|", 2, 2, +1, 3)]
         public void GetNeighborsCount3D_Works_Correctly(string data, string separator, int x, int y, int z, int result)
         {
-            Assert.That(Solver.GetNeighborsCount(new Grid3D(Parser.GetActiveCubesPositions(data, separator)), x, y, z), Is.EqualTo(result));
+            Assert.That(Solver.GetNeighborsCount3D(new Grid3D(Parser.GetActiveCubesPositions(data, separator)), x, y, z), Is.EqualTo(result));
         }
         
         private static string GetSliceStr(Grid3D grid, (int x, int y) min, (int x, int y) max, int z)
