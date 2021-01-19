@@ -2,7 +2,7 @@
 
 namespace day_2020_12_18.tests
 {
-    public class CalculatorTests
+    public class LeftRightCalculatorTests
     {
         [TestCase("1 + 2 * 3", 9)]
         [TestCase("1 + (2 * 3)", 7)]
@@ -14,7 +14,7 @@ namespace day_2020_12_18.tests
         [TestCase("((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2", 13632)]
         public void Calculate_Works_Correctly(string input, int result)
         {
-            Assert.That(Calculator.Calculate(input).result, Is.EqualTo(result));
+            Assert.That(LeftRightCalculator.Calculate(input).result, Is.EqualTo(result));
         }
     }
 }

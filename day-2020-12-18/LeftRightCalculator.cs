@@ -1,6 +1,6 @@
 ﻿namespace day_2020_12_18
 {
-    public static class Calculator
+    public static class LeftRightCalculator
     {
         public static (long result, int pos) Calculate(string expression)
         {
