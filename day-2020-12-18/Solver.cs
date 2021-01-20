@@ -11,5 +11,12 @@ namespace day_2020_12_18
                 .Select(expression => LeftRightCalculator.Calculate(expression).result)
                 .Sum();
         }
+        
+        public static long Part2(IEnumerable<string> expressions)
+        {
+            return expressions
+                .Select(PrecedenceCalculator.Calculate)
+                .Sum();
+        }
     }
 }

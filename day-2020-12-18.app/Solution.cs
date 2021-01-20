@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using utils;
 
@@ -17,7 +18,7 @@ namespace day_2020_12_18.app
 
         public Solution()
         {
-            _expressions = Input.GetData();
+            _expressions = Input.GetData().ToList();
         }
 
         public object SolvePart1()
@@ -27,7 +28,7 @@ namespace day_2020_12_18.app
 
         public object SolvePart2()
         {
-            return null;
+            return Solver.Part2(_expressions);
         }
     }
 }
