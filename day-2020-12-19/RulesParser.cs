@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
 using day_2020_12_19.Rules;
 
 namespace day_2020_12_19
