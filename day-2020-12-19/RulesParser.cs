@@ -9,8 +9,11 @@ namespace day_2020_12_19
     {
         public static IReadOnlyDictionary<int, IRule> Parse(string data)
         {
-            var lines = data.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
-            
+            return Parse(data.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries));
+        }
+        
+        public static IReadOnlyDictionary<int, IRule> Parse(IEnumerable<string> lines)
+        {
             var rulesStrings = lines
                 .Select(line => line.Split(new[] {':'}, StringSplitOptions.TrimEntries))
                 .ToDictionary(parts => int.Parse(parts[0]), parts => parts[1]);
