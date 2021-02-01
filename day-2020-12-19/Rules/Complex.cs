@@ -12,13 +12,15 @@ namespace day_2020_12_19.Rules
             _rules = rules;
         }
 
+        private int? _length;
         public int Length
         {
             get
             {
-                return _rules
+                _length ??= _rules
                     .Select(subsequentRules => subsequentRules.Sum(rule => rule.Length))
                     .Max();
+                return _length.Value;
             }
         }
 
