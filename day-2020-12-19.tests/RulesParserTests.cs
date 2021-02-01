@@ -11,14 +11,14 @@ namespace day_2020_12_19.tests
             const string data = @"
 0: 1 2
 1: ""a""
-2: 1 3 | 3 1
+2: 1 3 | 3 1 3
 3: ""b"""; 
             var rules = RulesParser.Parse(data);
             Assert.That(rules.Count, Is.EqualTo(4));
             Assert.That(rules[0], Is.TypeOf<Complex>());
             Assert.That(rules[1], Is.TypeOf<Simple>());
             Assert.That(rules[2], Is.TypeOf<Complex>());
-            Assert.That(rules[3], Is.TypeOf<Simple>());
+            Assert.That(rules[4], Is.TypeOf<Simple>());
         }
     }
 }
