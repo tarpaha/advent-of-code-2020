@@ -9,6 +9,8 @@
             _ch = ch;
         }
 
+        public int Length => 1;
+
         public bool Match(string str, ref int pos)
         {
             if (pos >= str.Length || str[pos] != _ch)

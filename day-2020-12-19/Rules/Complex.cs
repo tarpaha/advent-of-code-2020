@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
+using System.Collections.Generic;
 
 namespace day_2020_12_19.Rules
 {
@@ -9,6 +10,16 @@ namespace day_2020_12_19.Rules
         public Complex(IEnumerable<IEnumerable<IRule>> rules)
         {
             _rules = rules;
+        }
+
+        public int Length
+        {
+            get
+            {
+                return _rules
+                    .Select(subsequentRules => subsequentRules.Sum(rule => rule.Length))
+                    .Max();
+            }
         }
 
         public bool Match(string str, ref int pos)
