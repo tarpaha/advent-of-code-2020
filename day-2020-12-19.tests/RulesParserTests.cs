@@ -18,7 +18,12 @@ namespace day_2020_12_19.tests
             Assert.That(rules[0], Is.TypeOf<Complex>());
             Assert.That(rules[1], Is.TypeOf<Simple>());
             Assert.That(rules[2], Is.TypeOf<Complex>());
-            Assert.That(rules[4], Is.TypeOf<Simple>());
+            Assert.That(rules[3], Is.TypeOf<Simple>());
+            
+            Assert.That(rules[1].Length, Is.EqualTo(1));
+            Assert.That(rules[3].Length, Is.EqualTo(1));
+            Assert.That(rules[2].Length, Is.EqualTo(3));
+            Assert.That(rules[0].Length, Is.EqualTo(4));
         }
     }
 }
