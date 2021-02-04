@@ -17,20 +17,11 @@ Tile 2311:
 .#.#.#..##
 ..#....#..
 ###...#.#.
-..###..###", 2311, 10)]
-        public void ParseTile_Works_Correctly(string data, int id, int size)
+..###..###")]
+        public void ParseTile_Works_Correctly(string data)
         {
             var tile = Parser.ParseTile(data);
-            Assert.That(tile.Id, Is.EqualTo(2311));
-            Assert.That(tile.Size, Is.EqualTo(10));
-
-            var dataLines = data.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
-            for (var y = 1; y <= tile.Size; y++)
-            {
-                var dataLine = dataLines[y];
-                var line = new string(Enumerable.Range(0, tile.Size).Select(x => tile.GetCell(x, y - 1)).Select(v => v ? '#' : '.').ToArray());
-                Assert.That(line, Is.EqualTo(dataLine));
-            }
+            Assert.That(Environment.NewLine + TileToString(tile), Is.EqualTo(data));
         }
 
         [TestCase(@"
@@ -68,12 +59,25 @@ Tile 1171:
 .#...####.
 #.##.####.
 ####..#...
-.....##...", new [] { 2311, 1951, 1171 }, 10)]
-        public void ParseTiles_Works_Correctly(string data, int[] ids, int size)
+.....##...")]
+        public void ParseTiles_Works_Correctly(string data)
         {
-            var tiles = Parser.ParseTiles(data).ToList();
-            Assert.That(tiles.Select(tile => tile.Id), Is.EquivalentTo(ids));
-            Assert.That(tiles.All(tile => tile.Size == size), Is.True);
+            var tiles = Parser.ParseTiles(data);
+            var result = Environment.NewLine + string.Join($"{Environment.NewLine}{Environment.NewLine}", tiles.Select(TileToString));
+            Assert.That(result, Is.EqualTo(data));
+        }
+
+        private static string TileToString(Tile tile)
+        {
+            var result = $"Tile {tile.Id}:{Environment.NewLine}";
+            for (var y = 0; y < tile.Size; y++)
+            {
+                for (var x = 0; x < tile.Size; x++)
+                    result += tile.GetCell(x, y) ? '#' : '.';
+                if(y < tile.Size - 1)
+                    result += Environment.NewLine;
+            }
+            return result;
         }
     }
 }
