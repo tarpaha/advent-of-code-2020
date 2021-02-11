@@ -2,7 +2,7 @@
 
 namespace day_2020_12_20.tests
 {
-    public class TileTests
+    public class BorderHashTests
     {
         [TestCase(@"
 Tile 2311:
@@ -20,7 +20,7 @@ Tile 2311:
             0b0001011001,
             0b0011010010,
             0b0011100111)]
-        public void TileBorderHash_Works_Correctly(string data, int left, int right, int top, int bottom)
+        public void Calculate_Works_Correctly(string data, int left, int right, int top, int bottom)
         {
             var tile = Parser.ParseTile(data);
             Assert.That(tile.Left, Is.EqualTo(left));
