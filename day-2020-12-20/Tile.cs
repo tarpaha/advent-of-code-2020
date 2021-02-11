@@ -3,7 +3,7 @@
     public class Tile
     {
         public int Id { get; }
-        public int Size => _cells.GetLength(0);
+        public int Size { get; }
 
         public int Left { get; }
         public int Right { get; }
@@ -18,6 +18,7 @@
         {
             Id = id;
             _cells = cells;
+            Size = _cells.GetLength(0);
 
             Top    = CalculateBorderHash(0, 0, 1, 0);
             Bottom = CalculateBorderHash(0, Size - 1, 1, 0);
