@@ -14,5 +14,18 @@
             }
             return new Tile(tile.Id, rotatedCells);
         }
+
+        public static Tile FlipHorizontal(Tile tile)
+        {
+            var flippedCells = new bool[tile.Size, tile.Size];
+            for (var y = 0; y < tile.Size; y++)
+            {
+                for (var x = 0; x < tile.Size; x++)
+                {
+                    flippedCells[tile.Size - 1 - x, y] = tile.GetCell(x, y);
+                }
+            }
+            return new Tile(tile.Id, flippedCells);
+        }
     }
 }
