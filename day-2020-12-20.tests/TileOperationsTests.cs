@@ -22,7 +22,6 @@ Tile 2311:
 ###...#.#.
 ..###..###");
         }
-
         
         [Test]
         public void RotateClockwise_Works_Correctly()
