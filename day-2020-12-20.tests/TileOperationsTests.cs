@@ -4,7 +4,12 @@ namespace day_2020_12_20.tests
 {
     public class TileOperationsTests
     {
-        [TestCase(@"
+        private Tile _tile;
+
+        [SetUp]
+        public void Init()
+        {
+            _tile = Parser.ParseTile(@"
 Tile 2311:
 ..##.#..#.
 ##..#.....
@@ -15,89 +20,56 @@ Tile 2311:
 .#.#.#..##
 ..#....#..
 ###...#.#.
-..###..###")]
-        public void RotateClockwise_Works_Correctly(string data)
-        {
-            var tile = Parser.ParseTile(data);
-            var rotatedTile = TileOperations.RotateClockwise(tile);
-            
-            Assert.That(rotatedTile.Right, Is.EqualTo(tile.Top));
-            Assert.That(rotatedTile.Bottom, Is.EqualTo(0b1001101000)); // inverted tile right
-            Assert.That(rotatedTile.Left, Is.EqualTo(tile.Bottom));
-            Assert.That(rotatedTile.Top, Is.EqualTo(0b0100111110)); // inverted left
+..###..###");
         }
 
-        [TestCase(@"
-Tile 2311:
-..##.#..#.
-##..#.....
-#...##..#.
-####.#...#
-##.##.###.
-##...#.###
-.#.#.#..##
-..#....#..
-###...#.#.
-..###..###")]
-        public void RotateClockwise_4Times_ReturnsTheSame(string data)
+        
+        [Test]
+        public void RotateClockwise_Works_Correctly()
         {
-            var source = Parser.ParseTile(data);
-            var rotated = TileOperations.RotateClockwise(source);
+            var rotated = TileOperations.RotateClockwise(_tile);
+            
+            Assert.That(rotated.Right, Is.EqualTo(_tile.Top));
+            Assert.That(rotated.Bottom, Is.EqualTo(0b1001101000)); // inverted tile right
+            Assert.That(rotated.Left, Is.EqualTo(_tile.Bottom));
+            Assert.That(rotated.Top, Is.EqualTo(0b0100111110)); // inverted left
+        }
+
+        [Test]
+        public void RotateClockwise_4Times_ReturnsTheSame()
+        {
+            var rotated = TileOperations.RotateClockwise(_tile);
             rotated = TileOperations.RotateClockwise(rotated);
             rotated = TileOperations.RotateClockwise(rotated);
             rotated = TileOperations.RotateClockwise(rotated);
             
-            Assert.That(source.Top, Is.EqualTo(rotated.Top));
-            Assert.That(source.Bottom, Is.EqualTo(rotated.Bottom));
-            Assert.That(source.Left, Is.EqualTo(rotated.Left));
-            Assert.That(source.Right, Is.EqualTo(rotated.Right));
+            Assert.That(_tile.Top, Is.EqualTo(rotated.Top));
+            Assert.That(_tile.Bottom, Is.EqualTo(rotated.Bottom));
+            Assert.That(_tile.Left, Is.EqualTo(rotated.Left));
+            Assert.That(_tile.Right, Is.EqualTo(rotated.Right));
         }
 
-        [TestCase(@"
-Tile 2311:
-..##.#..#.
-##..#.....
-#...##..#.
-####.#...#
-##.##.###.
-##...#.###
-.#.#.#..##
-..#....#..
-###...#.#.
-..###..###")]
-        public void FlipHorizontal_Works_Correctly(string data)
+        [Test]
+        public void FlipHorizontal_Works_Correctly()
         {
-            var tile = Parser.ParseTile(data);
-            var flippedTile = TileOperations.FlipHorizontal(tile);
+            var flipped = TileOperations.FlipHorizontal(_tile);
             
-            Assert.That(flippedTile.Right, Is.EqualTo(tile.Left));
-            Assert.That(flippedTile.Left, Is.EqualTo(tile.Right));
-            Assert.That(flippedTile.Top, Is.EqualTo(0b0100101100)); // inverted tile top
-            Assert.That(flippedTile.Bottom, Is.EqualTo(0b1110011100)); // inverted tile bottom
+            Assert.That(flipped.Right, Is.EqualTo(_tile.Left));
+            Assert.That(flipped.Left, Is.EqualTo(_tile.Right));
+            Assert.That(flipped.Top, Is.EqualTo(0b0100101100)); // inverted tile top
+            Assert.That(flipped.Bottom, Is.EqualTo(0b1110011100)); // inverted tile bottom
         }
 
-        [TestCase(@"
-Tile 2311:
-..##.#..#.
-##..#.....
-#...##..#.
-####.#...#
-##.##.###.
-##...#.###
-.#.#.#..##
-..#....#..
-###...#.#.
-..###..###")]
-        public void FlipHorizontal_2Times_ReturnsTheSame(string data)
+        [Test]
+        public void FlipHorizontal_2Times_ReturnsTheSame()
         {
-            var tile = Parser.ParseTile(data);
-            var flipped = TileOperations.FlipHorizontal(tile);
+            var flipped = TileOperations.FlipHorizontal(_tile);
             flipped = TileOperations.FlipHorizontal(flipped);
 
-            Assert.That(flipped.Top, Is.EqualTo(tile.Top));
-            Assert.That(flipped.Bottom, Is.EqualTo(tile.Bottom));
-            Assert.That(flipped.Left, Is.EqualTo(tile.Left));
-            Assert.That(flipped.Right, Is.EqualTo(tile.Right));
+            Assert.That(flipped.Top, Is.EqualTo(_tile.Top));
+            Assert.That(flipped.Bottom, Is.EqualTo(_tile.Bottom));
+            Assert.That(flipped.Left, Is.EqualTo(_tile.Left));
+            Assert.That(flipped.Right, Is.EqualTo(_tile.Right));
         }
     }
 }
