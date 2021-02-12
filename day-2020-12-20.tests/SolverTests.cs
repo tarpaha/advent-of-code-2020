@@ -131,7 +131,7 @@ Tile 3079:
         [Test]
         public void Part2()
         {
-            Assert.That(Solver.Part2(_tiles), Is.EqualTo(273));
+            Assert.That(Solver.Part2(_tiles, Parser.GetDragon()), Is.EqualTo(273));
         }
 
         [TestCase(@"

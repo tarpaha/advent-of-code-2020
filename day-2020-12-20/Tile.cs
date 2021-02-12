@@ -29,6 +29,11 @@
             }
         }
 
+        public void ClearCell(int x, int y)
+        {
+            _cells[x, y] = false;
+        }
+
         public override string ToString()
         {
             return $"Tile: {Id}";

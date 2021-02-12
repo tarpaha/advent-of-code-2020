@@ -11,11 +11,68 @@ namespace day_2020_12_20
             return GetCornerTileIds(tiles.SelectMany(TileOperations.Variations)).Aggregate(1L, (x, y) => x * y);
         }
 
-        public static long Part2(IEnumerable<Tile> tiles)
+        public static long Part2(IEnumerable<Tile> tiles, bool [,] dragon)
         {
-            var image = CreateImageTile(tiles);
-            
-            return 0;
+            var images = TileOperations.Variations(CreateImageTile(tiles));
+            var (image, positions) = images
+                .Select(img => (image: img, positions: FindDragon(img, dragon)))
+                .First(tuple => tuple.positions.Any());
+            ClearImageFromDragons(image, dragon, positions);
+            return GetFilledCells(image);
+        }
+
+        private static int GetFilledCells(Tile tile)
+        {
+            var result = 0;
+            for (var y = 0; y < tile.Size; y++)
+            {
+                for (var x = 0; x < tile.Size; x++)
+                {
+                    if (tile.GetCell(x, y))
+                        result += 1;
+                }
+            }
+            return result;
+        }
+
+        private static void ClearImageFromDragons(Tile image, bool [,] dragon, IEnumerable<(int x, int y)> dragonPositions)
+        {
+            var (dragonWidth, dragonHeight) = (dragon.GetLength(0), dragon.GetLength(1));
+            foreach (var (dx, dy) in dragonPositions)
+            {
+                for (var y = 0; y < dragonHeight; y++)
+                {
+                    for (var x = 0; x < dragonWidth; x++)
+                    {
+                        if(dragon[x, y])
+                            image.ClearCell(dx + x, dy + y);
+                    }
+                }
+            }
+        }
+
+        private static List<(int x, int y)> FindDragon(Tile image, bool [,] dragon)
+        {
+            var (dragonWidth, dragonHeight) = (dragon.GetLength(0), dragon.GetLength(1));
+            var result = new List<(int x, int y)>();
+            for (var y = 0; y <= image.Size - dragonHeight; y++)
+            {
+                for (var x = 0; x <= image.Size - dragonWidth; x++)
+                {
+                    var present = true;
+                    for (var dy = 0; present && dy < dragonHeight; dy++)
+                    {
+                        for (var dx = 0; present && dx < dragonWidth; dx++)
+                        {
+                            if (dragon[dx, dy] && !image.GetCell(x + dx, y + dy))
+                                present = false;
+                        }
+                    }
+                    if(present)
+                        result.Add((x, y));
+                }
+            }
+            return result;
         }
 
         public static Tile CreateImageTile(IEnumerable<Tile> tiles)

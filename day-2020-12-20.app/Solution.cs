@@ -8,6 +8,7 @@ namespace day_2020_12_20.app
     public class Solution : ISolution
     {
         private readonly IEnumerable<Tile> _tiles;
+        private readonly bool[,] _dragon;
 
         public static void Main()
         {
@@ -19,6 +20,7 @@ namespace day_2020_12_20.app
         public Solution()
         {
             _tiles = Parser.ParseTiles(Input.GetData()).ToList();
+            _dragon = Parser.GetDragon();
         }
 
         public object SolvePart1()
@@ -28,7 +30,7 @@ namespace day_2020_12_20.app
 
         public object SolvePart2()
         {
-            return Solver.Part2(_tiles);
+            return Solver.Part2(_tiles, _dragon);
         }
     }
 }
