@@ -125,5 +125,11 @@ Tile 3079:
         {
             Assert.That(Solver.Part1(_tiles), Is.EqualTo(20899048083289));
         }
+        
+        [Test]
+        public void Part2()
+        {
+            Assert.That(Solver.Part2(_tiles), Is.EqualTo(273));
+        }
     }
 }
