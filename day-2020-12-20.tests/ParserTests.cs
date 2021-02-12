@@ -66,5 +66,16 @@ Tile 1171:
             var result = Environment.NewLine + string.Join($"{Environment.NewLine}{Environment.NewLine}", tiles.Select(TileOperations.ToString));
             Assert.That(result, Is.EqualTo(data));
         }
+
+        [Test]
+        public void GetDragon_Works_Correctly()
+        {
+            var dragon = Parser.GetDragon();
+            Assert.That(dragon.GetLength(0), Is.EqualTo(20));
+            Assert.That(dragon.GetLength(1), Is.EqualTo(3));
+            Assert.That(dragon[0, 0], Is.False);
+            Assert.That(dragon[0, 1], Is.True);
+            Assert.That(dragon[0, 2], Is.False);
+        }
     }
 }

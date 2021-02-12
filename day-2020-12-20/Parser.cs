@@ -27,5 +27,25 @@ namespace day_2020_12_20
             }
             return new Tile(tileId, cells);
         }
+        
+        public static bool[,] GetDragon()
+        {
+            const string data = @"
+                  # 
+#    ##    ##    ###
+ #  #  #  #  #  #   ";
+
+            var lines = data.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+            var (w, h) = (lines[0].Length, lines.Length);
+            var dragon = new bool[w, h];
+            for (var y = 0; y < h; y++)
+            {
+                for (var x = 0; x < w; x++)
+                {
+                    dragon[x, y] = lines[y][x] == '#';
+                }
+            }
+            return dragon;
+        }
     }
 }
