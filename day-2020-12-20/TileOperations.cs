@@ -27,5 +27,18 @@
             }
             return new Tile(tile.Id, flippedCells);
         }
+
+        public static Tile Copy(Tile tile)
+        {
+            var copy = new bool[tile.Size, tile.Size];
+            for (var y = 0; y < tile.Size; y++)
+            {
+                for (var x = 0; x < tile.Size; x++)
+                {
+                    copy[x, y] = tile.GetCell(x, y);
+                }
+            }
+            return new Tile(tile.Id, copy);
+        }
     }
 }

@@ -70,5 +70,19 @@ Tile 2311:
             Assert.That(flipped.Left, Is.EqualTo(_tile.Left));
             Assert.That(flipped.Right, Is.EqualTo(_tile.Right));
         }
+        
+        [Test]
+        public void Copy_Works_Correctly()
+        {
+            var copy = TileOperations.Copy(_tile);
+            Assert.That(copy.Id, Is.EqualTo(_tile.Id));
+            for (var y = 0; y < _tile.Size; y++)
+            {
+                for (var x = 0; x < _tile.Size; x++)
+                {
+                    Assert.That(copy.GetCell(x, y), Is.EqualTo(_tile.GetCell(x, y)));
+                }
+            }
+        }
     }
 }
