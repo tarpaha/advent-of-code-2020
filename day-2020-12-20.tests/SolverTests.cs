@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 
 namespace day_2020_12_20.tests
@@ -130,6 +132,40 @@ Tile 3079:
         public void Part2()
         {
             Assert.That(Solver.Part2(_tiles), Is.EqualTo(273));
+        }
+
+        [TestCase(@"
+.#.#..#.##...#.##..#####
+###....#.#....#..#......
+##.##.###.#.#..######...
+###.#####...#.#####.#..#
+##.#....#.##.####...#.##
+...########.#....#####.#
+....#..#...##..#.#.###..
+.####...#..#.....#......
+#..#.##..#..###.#.##....
+#.####..#.####.#.#.###..
+###.#.#...#.######.#..##
+#.####....##..########.#
+##..##.#...#...#.#.#.#..
+...#..#..#.#.##..###.###
+.#.#....#.##.#...###.##.
+###.#...#..#.##.######..
+.#.#.###.##.##.#..#.##..
+.####.###.#...###.#..#.#
+..#.#..#..#.#.#.####.###
+#..####...#.#.#.###.###.
+#####..#####...###....##
+#.##..#..#...#..####...#
+.#.###..##..##..####.##.
+...###...##...#...#..###")]
+        public void CreateImageTile_Works_Correctly(string imageStr)
+        {
+            var image = Solver.CreateImageTile(_tiles);
+            var imageVariations = TileOperations.Variations(image);
+            Assert.That(imageVariations
+                .Select(im => Environment.NewLine + TileOperations.ToString(im))
+                .Any(str => str == imageStr));
         }
     }
 }

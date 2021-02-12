@@ -11,7 +11,42 @@ namespace day_2020_12_20
             return GetCornerTileIds(tiles.SelectMany(TileOperations.Variations)).Aggregate(1L, (x, y) => x * y);
         }
 
-        public static long Part2(IEnumerable<Tile> source)
+        public static long Part2(IEnumerable<Tile> tiles)
+        {
+            var image = CreateImageTile(tiles);
+            
+            return 0;
+        }
+
+        public static Tile CreateImageTile(IEnumerable<Tile> tiles)
+        {
+            var imageTiles = FindImageTiles(tiles);
+            var imageTilesSize = imageTiles.GetLength(0);
+
+            var tileSize = imageTiles[0, 0].Size;
+            
+            var imageSize = imageTilesSize * (tileSize - 2);
+            var image = new bool[imageSize, imageSize];
+
+            for (var tileY = 0; tileY < imageTilesSize; tileY++)
+            {
+                for (var tileX = 0; tileX < imageTilesSize; tileX++)
+                {
+                    var imageTile = imageTiles[tileX, tileY];
+                    for (var y = 1; y < tileSize - 1; y++)
+                    {
+                        for (var x = 1; x < tileSize - 1; x++)
+                        {
+                            image[tileX * (tileSize - 2) + x - 1, tileY * (tileSize - 2) + y - 1] = imageTile.GetCell(x, y);
+                        }
+                    }
+                }
+            }
+
+            return new Tile(0, image);
+        }
+        
+        private static Tile[,] FindImageTiles(IEnumerable<Tile> source)
         {
             var tiles = source.SelectMany(TileOperations.Variations).ToList();
             var hashesUsage = tiles
@@ -73,10 +108,10 @@ namespace day_2020_12_20
                     current = bottomVariants.First();
                 }
             }
-            
-            return 0;
-        }
 
+            return image;
+        }
+        
         private static IEnumerable<int> GetCornerTileIds(IEnumerable<Tile> tilesVariations)
         {
             // all possible (tile id, border hash) variations
