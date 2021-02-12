@@ -78,6 +78,7 @@ Tile 2311:
         public void Copy_Works_Correctly()
         {
             var copy = TileOperations.Copy(_tile);
+            Assert.That(copy, Is.Not.EqualTo(_tile));
             Assert.That(copy.Id, Is.EqualTo(_tile.Id));
             for (var y = 0; y < _tile.Size; y++)
             {
