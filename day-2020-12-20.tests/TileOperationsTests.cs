@@ -28,6 +28,7 @@ Tile 2311:
         {
             var rotated = TileOperations.RotateClockwise(_tile);
             
+            Assert.That(rotated.Id, Is.EqualTo(_tile.Id));
             Assert.That(rotated.Right, Is.EqualTo(_tile.Top));
             Assert.That(rotated.Bottom, Is.EqualTo(0b1001101000)); // inverted tile right
             Assert.That(rotated.Left, Is.EqualTo(_tile.Bottom));
@@ -53,6 +54,7 @@ Tile 2311:
         {
             var flipped = TileOperations.FlipHorizontal(_tile);
             
+            Assert.That(flipped.Id, Is.EqualTo(_tile.Id));
             Assert.That(flipped.Right, Is.EqualTo(_tile.Left));
             Assert.That(flipped.Left, Is.EqualTo(_tile.Right));
             Assert.That(flipped.Top, Is.EqualTo(0b0100101100)); // inverted tile top
