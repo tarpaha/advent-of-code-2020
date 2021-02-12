@@ -116,30 +116,5 @@ Tile 3079:
         {
             Assert.That(Solver.Part1(Parser.ParseTiles(data)), Is.EqualTo(result));
         }
-
-        [TestCase(0, 0, +1,  0, 0b0011010010)]
-        [TestCase(9, 0, -1,  0, 0b0100101100)]
-        [TestCase(0, 0,  0, +1, 0b0111110010)]
-        [TestCase(0, 9,  0, -1, 0b0100111110)]
-        [TestCase(0, 9, +1,  0, 0b0011100111)]
-        [TestCase(9, 9, -1,  0, 0b1110011100)]
-        [TestCase(9, 0,  0, +1, 0b0001011001)]
-        [TestCase(9, 9,  0, -1, 0b1001101000)]
-        public void GetHash_Works_Correctly(int x, int y, int dx, int dy, int result)
-        {
-            const string data = @"
-Tile 2311:
-..##.#..#.
-##..#.....
-#...##..#.
-####.#...#
-##.##.###.
-##...#.###
-.#.#.#..##
-..#....#..
-###...#.#.
-..###..###";
-            Assert.That(Solver.GetHash(Parser.ParseTile(data), x, y, dx, dy), Is.EqualTo(result));
-        }
     }
 }
