@@ -1,10 +1,16 @@
+using System.Collections.Generic;
 using NUnit.Framework;
 
 namespace day_2020_12_20.tests
 {
     public class SolverTests
     {
-        [TestCase(@"
+        private IEnumerable<Tile> _tiles;
+        
+        [SetUp]
+        public void Init()
+        {
+            _tiles = Parser.ParseTiles(@"
 Tile 2311:
 ..##.#..#.
 ##..#.....
@@ -111,10 +117,13 @@ Tile 3079:
 #.#####.##
 ..#.###...
 ..#.......
-..#.###...", 20899048083289)]
-        public void Part1(string data, long result)
+..#.###...");
+        }
+        
+        [Test]
+        public void Part1()
         {
-            Assert.That(Solver.Part1(Parser.ParseTiles(data)), Is.EqualTo(result));
+            Assert.That(Solver.Part1(_tiles), Is.EqualTo(20899048083289));
         }
     }
 }
