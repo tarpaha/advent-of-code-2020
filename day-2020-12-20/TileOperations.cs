@@ -1,4 +1,6 @@
-﻿namespace day_2020_12_20
+﻿using System.Collections.Generic;
+
+namespace day_2020_12_20
 {
     public static class TileOperations
     {
@@ -39,6 +41,21 @@
                 }
             }
             return new Tile(tile.Id, copy);
+        }
+        
+        public static IEnumerable<Tile> Variations(Tile tile)
+        {
+            var normal = Copy(tile);
+            var flipped = FlipHorizontal(tile);
+            var variations = new List<Tile>();
+            for (var i = 0; i < 4; i++)
+            {
+                variations.Add(normal);
+                variations.Add(flipped);
+                normal = RotateClockwise(normal);
+                flipped = RotateClockwise(flipped);
+            }
+            return variations;
         }
     }
 }

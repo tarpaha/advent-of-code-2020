@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Linq;
+using NUnit.Framework;
 
 namespace day_2020_12_20.tests
 {
@@ -85,6 +86,14 @@ Tile 2311:
                     Assert.That(copy.GetCell(x, y), Is.EqualTo(_tile.GetCell(x, y)));
                 }
             }
+        }
+
+        [Test]
+        public void Variations_Works_Correctly()
+        {
+            var variations = TileOperations.Variations(_tile).ToList();
+            Assert.That(variations.Count, Is.EqualTo(8));
+            Assert.That(variations.All(v => v.Id == _tile.Id), Is.True);
         }
     }
 }
