@@ -6,6 +6,18 @@ namespace day_2020_12_21
 {
     public static class Parser
     {
+        public static Problem Parse(string data)
+        {
+            var lines = data.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+
+            var ingredientsDict = new Dictionary<string, Ingredient>();
+            var allergensDict = new Dictionary<string, Allergen>();
+            
+            var foods = lines.Select(line => ParseLine(line, ingredientsDict, allergensDict));
+
+            return new Problem(foods, ingredientsDict.Values, allergensDict.Values);
+        }
+        
         public static Food ParseLine(string line, Dictionary<string, Ingredient> ingredientsDict, Dictionary<string, Allergen> allergensDict)
         {
             var parts = line.Split(new[] {'(', ')'}, StringSplitOptions.RemoveEmptyEntries);
