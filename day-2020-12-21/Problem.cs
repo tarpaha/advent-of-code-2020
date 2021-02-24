@@ -11,9 +11,9 @@ namespace day_2020_12_21
 
         public Problem(IEnumerable<Food> foods, IEnumerable<Ingredient> ingredients, IEnumerable<Allergen> allergens)
         {
-            Foods = foods.ToList();
-            Ingredients = ingredients.ToList();
-            Allergens = allergens.ToList();
+            Foods = foods.ToHashSet();
+            Ingredients = ingredients.ToHashSet();
+            Allergens = allergens.ToHashSet();
         }
     }
 }

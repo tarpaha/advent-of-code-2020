@@ -14,7 +14,8 @@ namespace day_2020_12_21
             }
 
             var ingredientWithoutAllergens = problem.Ingredients
-                .Where(ingredient => !problem.Allergens.Any(allergen => IngredientCanContainAllergen(ingredient, allergen)));
+                .Where(ingredient => !problem.Allergens.Any(allergen => IngredientCanContainAllergen(ingredient, allergen)))
+                .ToHashSet();
 
             return problem.Foods
                 .SelectMany(food => food.Ingredients)

@@ -10,8 +10,8 @@ namespace day_2020_12_21
 
         public Food(IEnumerable<Ingredient> ingredients, IEnumerable<Allergen> allergens)
         {
-            Ingredients = ingredients.ToList();
-            Allergens = allergens.ToList();
+            Ingredients = ingredients.ToHashSet();
+            Allergens = allergens.ToHashSet();
         }
 
         public override string ToString()
