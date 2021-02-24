@@ -5,18 +5,18 @@ namespace day_2020_12_21
 {
     public class Food
     {
-        private readonly List<Ingredient> _ingredients;
-        private readonly List<Allergen> _allergens;
+        public IEnumerable<Ingredient> Ingredients { get; }
+        public IEnumerable<Allergen> Allergens { get; }
 
-        public Food(List<Ingredient> ingredients, List<Allergen> allergens)
+        public Food(IEnumerable<Ingredient> ingredients, IEnumerable<Allergen> allergens)
         {
-            _ingredients = ingredients;
-            _allergens = allergens;
+            Ingredients = ingredients.ToList();
+            Allergens = allergens.ToList();
         }
 
         public override string ToString()
         {
-            return $"{string.Join(" ", _ingredients.Select(i => i.Name))} (contains {string.Join(", ", _allergens.Select(a => a.Name))})";
+            return $"{string.Join(" ", Ingredients.Select(i => i.Name))} (contains {string.Join(", ", Allergens.Select(a => a.Name))})";
         }
     }
 }
