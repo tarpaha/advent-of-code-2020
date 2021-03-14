@@ -32,14 +32,19 @@ namespace day_2020_12_21
                 .All(food => food.Ingredients.Contains(ingredient));
         }
         
-        public static Problem MakeProblemWithoutIngredients(Problem problem, IEnumerable<Ingredient> ingredients)
+        public static Problem MakeProblemWithoutIngredientsAndAllergens(
+            Problem problem,
+            IEnumerable<Ingredient> ingredients,
+            IEnumerable<Allergen> allergens)
         {
             var ingredientsToRemove = ingredients.ToHashSet();
+            var allergensToRemove = allergens.ToHashSet();
             var updatedIngredients = problem.Ingredients.Where(ingredient => !ingredientsToRemove.Contains(ingredient));
+            var updatedAllergens = problem.Allergens.Where(allergen => !allergensToRemove.Contains(allergen));
             var updatedFoods = problem.Foods.Select(food => new Food(
                 food.Ingredients.Where(ingredient => !ingredientsToRemove.Contains(ingredient)),
-                food.Allergens));
-            return new Problem(updatedFoods, updatedIngredients, problem.Allergens);
+                food.Allergens.Where(allergen => !allergensToRemove.Contains(allergen))));
+            return new Problem(updatedFoods, updatedIngredients, updatedAllergens);
         }
     }
 }

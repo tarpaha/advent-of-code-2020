@@ -42,17 +42,24 @@ sqjhc mxmxvkd sbzzf (contains fish)");
             Assert.That(sortedIngredientNames, Is.EqualTo(result));
         }
         
-        [TestCase("kfcds,nhms,sbzzf,trh",
+        [TestCase("kfcds,nhms,sbzzf,trh", "",
 @"mxmxvkd sqjhc (contains dairy, fish)
 fvjkl mxmxvkd (contains dairy)
 sqjhc fvjkl (contains soy)
 sqjhc mxmxvkd (contains fish)")]
-        public void MakeProblemWithoutIngredients_Works_Correctly(string ingredientNamesStr, string result)
+        [TestCase("kfcds,nhms,sbzzf,trh", "dairy",
+            @"mxmxvkd sqjhc (contains fish)
+fvjkl mxmxvkd (contains )
+sqjhc fvjkl (contains soy)
+sqjhc mxmxvkd (contains fish)")]
+        public void MakeProblemWithoutIngredientsAndAllergens_Works_Correctly(string ingredientNamesStr, string allergenNamesStr, string result)
         {
             var ingredientNames = ingredientNamesStr.Split(',').ToHashSet();
             var ingredients = _problem.Ingredients.Where(ingredient => ingredientNames.Contains(ingredient.Name));
+            var allergenNames = allergenNamesStr.Split(",").ToHashSet();
+            var allergens = _problem.Allergens.Where(allergen => allergenNames.Contains(allergen.Name));
             Assert.That(
-                Solver.MakeProblemWithoutIngredients(_problem, ingredients).ToString(), Is.EqualTo(result));
+                Solver.MakeProblemWithoutIngredientsAndAllergens(_problem, ingredients, allergens).ToString(), Is.EqualTo(result));
         }
     }
 }
