@@ -4,14 +4,22 @@ namespace day_2020_12_21.tests
 {
     public class SolverTests
     {
-        [TestCase(@"
+        private Problem _problem;
+        
+        [SetUp]
+        public void Init()
+        {
+            _problem = Parser.Parse(@"
 mxmxvkd kfcds sqjhc nhms (contains dairy, fish)
 trh fvjkl sbzzf mxmxvkd (contains dairy)
 sqjhc fvjkl (contains soy)
-sqjhc mxmxvkd sbzzf (contains fish)", 5)]
-        public void Part1(string data, int result)
+sqjhc mxmxvkd sbzzf (contains fish)");
+        }
+
+        [TestCase(5)]
+        public void Part1(int result)
         {
-            Assert.That(Solver.Part1(Parser.Parse(data)), Is.EqualTo(result));
+            Assert.That(Solver.Part1(_problem), Is.EqualTo(result));
         }
     }
 }
