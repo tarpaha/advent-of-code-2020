@@ -21,5 +21,11 @@ sqjhc mxmxvkd sbzzf (contains fish)");
         {
             Assert.That(Solver.Part1(_problem), Is.EqualTo(result));
         }
+
+        [TestCase("mxmxvkd,sqjhc,fvjkl")]
+        public void Part2(string result)
+        {
+            Assert.That(Solver.Part2(_problem), Is.EqualTo(result));
+        }
     }
 }

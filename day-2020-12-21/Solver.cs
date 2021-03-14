@@ -21,5 +21,10 @@ namespace day_2020_12_21
                 .SelectMany(food => food.Ingredients)
                 .Count(ingredient => ingredientWithoutAllergens.Contains(ingredient));
         }
+
+        public static string Part2(Problem problem)
+        {
+            return "";
+        }
     }
 }
