@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace day_2020_12_21
@@ -14,6 +15,11 @@ namespace day_2020_12_21
             Foods = foods.ToHashSet();
             Ingredients = ingredients.ToHashSet();
             Allergens = allergens.ToHashSet();
+        }
+
+        public override string ToString()
+        {
+            return string.Join(Environment.NewLine, Foods.Select(food => food.ToString()));
         }
     }
 }

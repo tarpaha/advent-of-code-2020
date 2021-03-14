@@ -1,3 +1,4 @@
+using System.Linq;
 using NUnit.Framework;
 
 namespace day_2020_12_21.tests
@@ -26,6 +27,19 @@ sqjhc mxmxvkd sbzzf (contains fish)");
         public void Part2(string result)
         {
             Assert.That(Solver.Part2(_problem), Is.EqualTo(result));
+        }
+
+        [TestCase("kfcds,nhms,sbzzf,trh",
+@"mxmxvkd sqjhc (contains dairy, fish)
+fvjkl mxmxvkd (contains dairy)
+sqjhc fvjkl (contains soy)
+sqjhc mxmxvkd (contains fish)")]
+        public void MakeProblemWithoutIngredients_Works_Correctly(string ingredientNamesStr, string result)
+        {
+            var ingredientNames = ingredientNamesStr.Split(',').ToHashSet();
+            var ingredients = _problem.Ingredients.Where(ingredient => ingredientNames.Contains(ingredient.Name));
+            Assert.That(
+                Solver.MakeProblemWithoutIngredients(_problem, ingredients).ToString(), Is.EqualTo(result));
         }
     }
 }
