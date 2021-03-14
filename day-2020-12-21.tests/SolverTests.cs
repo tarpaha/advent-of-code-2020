@@ -29,6 +29,19 @@ sqjhc mxmxvkd sbzzf (contains fish)");
             Assert.That(Solver.Part2(_problem), Is.EqualTo(result));
         }
 
+        [TestCase("kfcds,nhms,sbzzf,trh")]
+        public void GetIngredientsWithoutAllergens_Works_Correctly(string result)
+        {
+            var ingredients = Solver.GetIngredientsWithoutAllergens(_problem);
+            var sortedIngredientNames = string.Join(
+                ",",
+                ingredients
+                    .Select(ingredient => ingredient.Name)
+                    .OrderBy(name => name)
+                );
+            Assert.That(sortedIngredientNames, Is.EqualTo(result));
+        }
+        
         [TestCase("kfcds,nhms,sbzzf,trh",
 @"mxmxvkd sqjhc (contains dairy, fish)
 fvjkl mxmxvkd (contains dairy)
