@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
+using System.Collections.Generic;
 
 namespace day_2020_12_21
 {
@@ -15,8 +15,35 @@ namespace day_2020_12_21
 
         public static string Part2(Problem problem)
         {
+            var result = new List<(Ingredient ingredient, Allergen allergen)>();
             
-            return "";
+            problem = MakeProblemWithoutIngredientsAndAllergens(
+                problem,
+                GetIngredientsWithoutAllergens(problem),
+                Enumerable.Empty<Allergen>());
+
+            while (problem.Ingredients.Any())
+            {
+                var subResult = new List<(Ingredient ingredient, Allergen allergen)>();
+                foreach (var ingredient in problem.Ingredients)
+                {
+                    var canContainAllergens = problem.Allergens
+                        .Where(allergen => IngredientCanContainAllergen(problem, ingredient, allergen))
+                        .ToList();
+                    if (canContainAllergens.Count == 1)
+                        subResult.Add((ingredient, canContainAllergens.First()));
+                }
+
+                problem = MakeProblemWithoutIngredientsAndAllergens(
+                    problem,
+                    subResult.Select(tuple => tuple.ingredient),
+                    subResult.Select(tuple => tuple.allergen));
+
+                result.AddRange(subResult);
+            }
+
+            return string.Join(",",
+                result.OrderBy(tuple => tuple.allergen.Name).Select(tuple => tuple.ingredient.Name));
         }
 
         public static IEnumerable<Ingredient> GetIngredientsWithoutAllergens(Problem problem)
