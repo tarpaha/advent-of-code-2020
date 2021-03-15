@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace day_2020_12_22
 {
-    public class Parser
+    public static class Parser
     {
         public static Problem Parse(string data)
         {
