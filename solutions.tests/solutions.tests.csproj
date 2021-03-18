@@ -35,6 +35,7 @@
       <ProjectReference Include="..\day-2020-12-20.app\day-2020-12-20.app.csproj" />
       <ProjectReference Include="..\day-2020-12-21.app\day-2020-12-21.app.csproj" />
       <ProjectReference Include="..\day-2020-12-22.app\day-2020-12-22.app.csproj" />
+      <ProjectReference Include="..\day-2020-12-23.app\day-2020-12-23.app.csproj" />
       <ProjectReference Include="..\utils\utils.csproj" />
     </ItemGroup>
 

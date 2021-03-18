@@ -32,6 +32,7 @@ namespace solutions.tests
                 yield return new TestCaseData(new day_2020_12_20.app.Solution(), 27803643063307, 1644);
                 yield return new TestCaseData(new day_2020_12_21.app.Solution(), 2125, "phc,spnd,zmsdzh,pdt,fqqcnm,lsgqf,rjc,lzvh");
                 yield return new TestCaseData(new day_2020_12_22.app.Solution(), 32272, 33206);
+                yield return new TestCaseData(new day_2020_12_23.app.Solution(), null, null);
             }
         }
 
