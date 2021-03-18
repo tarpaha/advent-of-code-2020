@@ -4,10 +4,11 @@ namespace day_2020_12_23.tests
 {
     public class SolverTests
     {
-        [Test]
-        public void Part1()
+        [TestCase(389125467, 10, 92658374)]
+        [TestCase(389125467, 100, 67384529)]
+        public void Part1(int input, int moves, int result)
         {
-            Assert.That(Solver.Part1(), Is.Null);
+            Assert.That(Solver.Part1(input, moves), Is.EqualTo(result));
         }
 
         [Test]
