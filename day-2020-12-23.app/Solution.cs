@@ -14,12 +14,12 @@ namespace day_2020_12_23.app
 
         public object SolvePart1()
         {
-            return Solver.Part1(318946572, 100);
+            return Solver.Part1(318946572, 9, 100);
         }
 
         public object SolvePart2()
         {
-            return Solver.Part2();
+            return Solver.Part2(318946572, 1000000, 10000000);
         }
     }
 }

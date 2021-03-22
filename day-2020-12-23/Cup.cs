@@ -1,11 +1,11 @@
 ﻿namespace day_2020_12_23
 {
-    public class CircleListNode
+    public class Cup
     {
         public int Number { get; }
-        public CircleListNode Next { get; set; }
+        public Cup Next { get; set; }
 
-        public CircleListNode(int number)
+        public Cup(int number)
         {
             Number = number;
         }
