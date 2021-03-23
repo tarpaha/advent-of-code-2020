@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Collections.Generic;
 
 namespace day_2020_12_23
 {
@@ -7,10 +6,8 @@ namespace day_2020_12_23
     {
         public static int Part1(int input, int max, int moves)
         {
-            var cup = Iterate(input, max, moves);
-
-            while (cup.Number != 1)
-                cup = cup.Next;
+            var cups = Iterate(input, max, moves);
+            var cup = cups[1]; 
             cup = cup.Next;
 
             var result = "";
@@ -25,15 +22,14 @@ namespace day_2020_12_23
         
         public static long Part2(int input, int max, int moves)
         {
-            var cup = Iterate(input, max, moves);
-            while (cup.Number != 1)
-                cup = cup.Next;
+            var cups = Iterate(input, max, moves);
+            var cup = cups[1];
             return (long)cup.Next.Number * cup.Next.Next.Number;
         }
 
-        private static Cup Iterate(int input, int max, int moves)
+        private static Cup[] Iterate(int input, int max, int moves)
         {
-            var (dict, current) = CreateCups(input, max);
+            var (cups, current) = CreateCups(input, max);
             for (var i = 0; i < moves; i++)
             {
                 var taken = current.Next;
@@ -53,7 +49,7 @@ namespace day_2020_12_23
                         break;
                 }
 
-                var destinationCup = dict[destination];
+                var destinationCup = cups[destination];
                 var nextAfterDestination = destinationCup.Next;
 
                 destinationCup.Next = taken;
@@ -61,23 +57,23 @@ namespace day_2020_12_23
 
                 current = current.Next;
             }
-            return current;
+            return cups;
         }
 
-        private static (Dictionary<int, Cup>, Cup) CreateCups(int input, int max)
+        private static (Cup[], Cup) CreateCups(int input, int max)
         {
             var numbers = input.ToString().Select(ch => ch - '0').ToList();
-            var dict = new Dictionary<int, Cup>();
+            var cups = new Cup[max + 1];
             
             var firstCup = new Cup(numbers[0]);
-            dict[firstCup.Number] = firstCup;
+            cups[numbers[0]] = firstCup;
             
             var currentCup = firstCup;
             
             for (var i = 1; i < 9; i++)
             {
                 var newCup = new Cup(numbers[i]);
-                dict[newCup.Number] = newCup;
+                cups[numbers[i]] = newCup;
                 
                 currentCup.Next = newCup;
                 currentCup = newCup;
@@ -86,7 +82,7 @@ namespace day_2020_12_23
             for (var i = 10; i <= max; i++)
             {
                 var newCup = new Cup(i);
-                dict[newCup.Number] = newCup;
+                cups[i] = newCup;
                 
                 currentCup.Next = newCup;
                 currentCup = newCup;
@@ -94,7 +90,7 @@ namespace day_2020_12_23
             
             currentCup.Next = firstCup;
             
-            return (dict, firstCup);
+            return (cups, firstCup);
         }
     }
 }
