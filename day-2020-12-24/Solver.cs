@@ -8,6 +8,16 @@ namespace day_2020_12_24
     {
         public static int Part1(string data)
         {
+            return PrepareTiles(data).Values.Count(white => !white);
+        }
+
+        public static object Part2()
+        {
+            return null;
+        }
+
+        public static Dictionary<(int, int), bool> PrepareTiles(string data)
+        {
             var lines = data.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
             var tiles = new Dictionary<(int, int), bool>();
             
@@ -20,13 +30,8 @@ namespace day_2020_12_24
 
                 tiles[pos] = !tile;
             }
-            
-            return tiles.Values.Count(white => !white);
-        }
 
-        public static object Part2()
-        {
-            return null;
+            return tiles;
         }
 
         public static (int x, int y) Move((int x, int y) pos, IEnumerable<Direction> directions)
