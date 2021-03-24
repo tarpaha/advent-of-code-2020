@@ -11,12 +11,63 @@ namespace day_2020_12_24
             return PrepareTiles(data).Values.Count(white => !white);
         }
 
-        public static object Part2()
+        public static int Part2(string data, int days)
         {
-            return null;
+            var tiles = PrepareTiles(data);
+            for (var day = 0; day < days; day++)
+                ProcessDay(tiles);
+            return tiles.Values.Count(white => !white);
+        }
+        
+        private static void ProcessDay(Dictionary<(int, int), bool> tiles)
+        {
+            var tilesToRotate = new List<(int, int)>();
+            var whiteTilesWithAdjacentBlacks = new Dictionary<(int, int), int>();
+            
+            foreach (var (pos, white) in tiles)
+            {
+                if (white)
+                    continue;
+                
+                var adjacentTilePositions = GetAdjacentTiles(pos);
+                var adjacentBlackTilesCount = 0;
+                foreach (var adjacentTilePosition in adjacentTilePositions)
+                {
+                    if (!tiles.TryGetValue(adjacentTilePosition, out var adjacentTileIsWhite))
+                        adjacentTileIsWhite = true;
+
+                    if (adjacentTileIsWhite)
+                    {
+                        if (!whiteTilesWithAdjacentBlacks.TryGetValue(adjacentTilePosition, out var blacksCount))
+                            blacksCount = 0;
+                        whiteTilesWithAdjacentBlacks[adjacentTilePosition] = blacksCount + 1;
+                    }
+                    else
+                    {
+                        adjacentBlackTilesCount += 1;
+                    }
+                }
+
+                if (adjacentBlackTilesCount == 0 || adjacentBlackTilesCount > 2)
+                    tilesToRotate.Add(pos);
+            }
+            
+            tilesToRotate.AddRange(whiteTilesWithAdjacentBlacks.Where(kvp => kvp.Value == 2).Select(kvp => kvp.Key));
+
+            foreach (var pos in tilesToRotate)
+            {
+                if (!tiles.TryGetValue(pos, out var white))
+                    white = true;
+                tiles[pos] = !white;
+            }
         }
 
-        public static Dictionary<(int, int), bool> PrepareTiles(string data)
+        private static IEnumerable<(int, int)> GetAdjacentTiles((int, int) pos)
+        {
+            return DirectionShifts.Keys.Select(direction => Move(pos, direction));
+        }
+
+        private static Dictionary<(int, int), bool> PrepareTiles(string data)
         {
             var lines = data.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
             var tiles = new Dictionary<(int, int), bool>();
@@ -36,24 +87,24 @@ namespace day_2020_12_24
 
         public static (int x, int y) Move((int x, int y) pos, IEnumerable<Direction> directions)
         {
-            foreach (var direction in directions)
-            {
-                var (x, y) = DirectionShifts[direction];
+            return directions.Aggregate(pos, Move);
+        }
 
-                switch (direction)
-                {
-                    case Direction.SW:
-                    case Direction.NW:
-                    case Direction.SE:
-                    case Direction.NE:
-                        if ((pos.y & 1) == 1)
-                            pos.x -= 1;
-                        break;
-                }
-                
-                pos.x += x;
-                pos.y += y;
+        private static (int x, int y) Move((int x, int y) pos, Direction direction)
+        {
+            var (x, y) = DirectionShifts[direction];
+            switch (direction)
+            {
+                case Direction.SW:
+                case Direction.NW:
+                case Direction.SE:
+                case Direction.NE:
+                    if ((pos.y & 1) == 1)
+                        pos.x -= 1;
+                    break;
             }
+            pos.x += x;
+            pos.y += y;
             return pos;
         }
         

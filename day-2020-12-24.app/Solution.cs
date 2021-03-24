@@ -19,7 +19,7 @@ namespace day_2020_12_24.app
 
         public object SolvePart2()
         {
-            return Solver.Part2();
+            return Solver.Part2(Input.GetData(), 100);
         }
     }
 }

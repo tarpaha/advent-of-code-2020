@@ -4,7 +4,12 @@ namespace day_2020_12_24.tests
 {
     public class SolverTests
     {
-        [TestCase(@"
+        private string _data;
+        
+        [SetUp]
+        public void Init()
+        {
+            _data = @"
 sesenwnenenewseeswwswswwnenewsewsw
 neeenesenwnwwswnenewnwwsewnenwseswesw
 seswneswswsenwwnwse
@@ -24,16 +29,38 @@ wnwnesenesenenwwnenwsewesewsesesew
 nenewswnwewswnenesenwnesewesw
 eneswnwswnwsenenwnwnwwseeswneewsenese
 neswnwewnwnwseenwseesewsenwsweewe
-wseweeenwnesenwwwswnew", 10)]
-        public void Part1(string data, int result)
+wseweeenwnesenwwwswnew";
+        }
+        
+        
+        [TestCase(10)]
+        public void Part1(int result)
         {
-            Assert.That(Solver.Part1(data), Is.EqualTo(result));
+            Assert.That(Solver.Part1(_data), Is.EqualTo(result));
         }
 
-        [Test]
-        public void Part2()
+        [TestCase(1, 15)]
+        [TestCase(2, 12)]
+        [TestCase(3, 25)]
+        [TestCase(4, 14)]
+        [TestCase(5, 23)]
+        [TestCase(6, 28)]
+        [TestCase(7, 41)]
+        [TestCase(8, 37)]
+        [TestCase(9, 49)]
+        [TestCase(10, 37)]
+        [TestCase(20, 132)]
+        [TestCase(30, 259)]
+        [TestCase(40, 406)]
+        [TestCase(50, 566)]
+        [TestCase(60, 788)]
+        [TestCase(70, 1106)]
+        [TestCase(80, 1373)]
+        [TestCase(90, 1844)]
+        [TestCase(100, 2208)]
+        public void Part2(int days, int result)
         {
-            Assert.That(Solver.Part2(), Is.Null);
+            Assert.That(Solver.Part2(_data, days), Is.EqualTo(result));
         }
 
         [TestCase(0, 0, "nwwswee", 0, 0)]
