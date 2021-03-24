@@ -15,13 +15,13 @@ namespace day_2020_12_24
             {
                 var pos = Move((0, 0), Parser.Parse(line));
 
-                if (!tiles.TryGetValue(pos, out var flipped))
-                    flipped = false;
+                if (!tiles.TryGetValue(pos, out var tile))
+                    tile = true;
 
-                tiles[pos] = !flipped;
+                tiles[pos] = !tile;
             }
             
-            return tiles.Values.Count(flipped => flipped);
+            return tiles.Values.Count(white => !white);
         }
 
         public static object Part2()
