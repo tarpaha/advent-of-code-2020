@@ -14,7 +14,7 @@ namespace day_2020_12_24.app
 
         public object SolvePart1()
         {
-            return Solver.Part1();
+            return Solver.Part1(Input.GetData());
         }
 
         public object SolvePart2()

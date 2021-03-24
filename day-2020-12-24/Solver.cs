@@ -1,12 +1,27 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace day_2020_12_24
 {
     public static class Solver
     {
-        public static object Part1()
+        public static int Part1(string data)
         {
-            return null;
+            var lines = data.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+            var tiles = new Dictionary<(int, int), bool>();
+            
+            foreach (var line in lines)
+            {
+                var pos = Move((0, 0), Parser.Parse(line));
+
+                if (!tiles.TryGetValue(pos, out var flipped))
+                    flipped = false;
+
+                tiles[pos] = !flipped;
+            }
+            
+            return tiles.Values.Count(flipped => flipped);
         }
 
         public static object Part2()
